@@ -15,11 +15,11 @@ class CreateNotesTable extends Migration {
 		Schema::create('notes', function(Blueprint $table)
 		{
             $table->engine = "MyISAM";
-			$table->increments('id');
+            $table->increments('id');
             $table->string('title', 50);
             $table->integer('userid')->index();
             $table->string('note', 1000);
-			$table->timestamps();
+            $table->timestamps();
 		});
 	}
 
