@@ -17,7 +17,7 @@ class NoteController extends BaseController
     public function store()
     {
         $json = array();
-         if (!Request::isJson())
+        if (!Request::isJson())
         {
             $json['message'] = "Request is not JSON";
             $json['state'] = 400;
