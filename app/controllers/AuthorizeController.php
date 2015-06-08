@@ -29,7 +29,7 @@ class AuthorizeController extends BaseController
             $json['state'] = 400;
             return Response::json($json);
         }
-        $clientCredentials = new MyClientCredentials();
+        $clientCredentials = new ClientCredentials();
         if(!$clientCredentials->CheckInputs($data))
         {
             $json = array();

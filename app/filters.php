@@ -88,3 +88,31 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+Route::filter('Check_Access_Token', function($route, $request)
+{
+    $receivedToken = Input::get('access_token');
+    if(empty($receivedToken))
+    {
+        $json['message'] = "No access token exists or it's not a valid token. Please, login and receive a valid token";
+        $json['state'] = 401;
+        return Response::json($json);
+    }
+    $accessToken = new AccessToken();
+    $usr = $accessToken->checkReceivedToken($receivedToken);
+    if(!is_array($usr) || sizeof($usr) != 2 || !isset($usr['id']) || $usr['id'] <= 0 )
+    {
+        $json['message'] = "No access token exists or it's not a valid token. Please, login and receive a valid token";
+        $json['state'] = 401;
+        return Response::json($json);
+    }
+    Session::set('user_id', $usr['id']);
+});
+Route::filter('Check_Is_JSON', function($route, $request)
+{
+    if (!Request::isJson())
+    {
+        $json['message'] = "Request is not JSON";
+        $json['state'] = 400;
+        return Response::json($json);
+    }
+});
