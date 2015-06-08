@@ -3,5 +3,5 @@
 interface AccessTokenInterface
 {
     public function createAccessToken(UserCredentialsInterface $user);
-    public function CheckReceivedToken($token);
+    public function checkReceivedToken($token);
 }

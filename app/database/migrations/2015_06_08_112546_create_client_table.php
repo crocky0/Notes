@@ -12,7 +12,7 @@ class CreateClientTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('client', function(Blueprint $table)
+		Schema::create('clients', function(Blueprint $table)
 		{
             $table->engine = "MyISAM";
             $table->increments('id');
@@ -28,6 +28,6 @@ class CreateClientTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('client');
+		Schema::drop('clients');
 	}
 }
